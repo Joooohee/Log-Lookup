@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/index.css")
+        link(rel="stylesheet" href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css")
+        script(defer src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js")
+        script(defer src="/index.js")
+        title Document
+    body
+        .wrapper
+            .title
+                span Awesome Log Lookup
+            form(class="conditions")
+                .condition-date
+                    .date-text
+                        span DATE
+                    .date-input
+                        input(type="date")
+                        span ~
+                        input(type="date")
+                .condition-api
+                    label(for="select" class="api-text") API NAME
+                    select(name="api")
+                        - var n = 1;
+                        ul
+                            option(value="") All select
+                            while n < 32
+                                option(value=n)=`IF${n++}`
+            .grid
+                .gird_colum s
+                .gird_colum s
+        //- .data-gird#wrapper
