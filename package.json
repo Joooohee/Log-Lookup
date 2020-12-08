@@ -1,0 +1,37 @@
+{
+  "name": "log-lookup",
+  "version": "1.0.0",
+  "description": "Log-Lookup with mssql, nodejs, pug",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node src/init.js --delay 2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joooohee/Log-Lookup.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Joooohee/Log-Lookup/issues"
+  },
+  "homepage": "https://github.com/Joooohee/Log-Lookup#readme",
+  "dependencies": {
+    "@babel/polyfill": "^7.11.5",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "morgan": "^1.10.0",
+    "mssql": "^6.2.3",
+    "pug": "^3.0.0",
+    "tui-grid": "^4.15.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.5",
+    "nodemon": "^2.0.3"
+  }
+}
