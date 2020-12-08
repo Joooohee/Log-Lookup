@@ -3,10 +3,10 @@ html(lang="en")
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        link(rel="stylesheet", href="/index.css")
+        link(rel="stylesheet", href="styles/index.css")
         link(rel="stylesheet" href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css")
         script(defer src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js")
-        script(defer src="/index.js")
+        script(defer src="js/index.js")
         title Document
     body
         .wrapper
@@ -29,6 +29,7 @@ html(lang="en")
                             while n < 32
                                 option(value=n)=`IF${n++}`
             .grid
-                .gird_colum s
-                .gird_colum s
+                .gird_colum#jsGrid
+                .gird_colum#jsJson
+                    span
         //- .data-gird#wrapper
