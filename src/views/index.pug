@@ -12,22 +12,24 @@ html(lang="en")
         .wrapper
             .title
                 span Awesome Log Lookup
-            form(class="conditions")
+            form(class="conditions")#jsForm
                 .condition-date
                     .date-text
                         span DATE
                     .date-input
-                        input(type="date")
+                        input(type="date" name="toDate" id="toDate")
                         span ~
-                        input(type="date")
+                        input(type="date" name="fromDate" id="fromDate")
                 .condition-api
                     label(for="select" class="api-text") API NAME
                     select(name="api")
-                        - var n = 1;
+                        - let n = 1;
                         ul
                             option(value="") All select
                             while n < 32
-                                option(value=n)=`IF${n++}`
+                                - const name = 'HSE_IF_' + `${n++}`.padStart(3,'0');
+                                option(value=name)=name
+                input(type="submit" hidden)#jsSubmit
             .grid
                 .gird_colum#jsGrid
                 .gird_colum#jsJson

@@ -1,5 +1,8 @@
+import "@babel/polyfill";
+import axios from "axios";
 import Grid from "tui-grid";
 const jsonSpan = document.getElementById("jsJson").querySelector("span");
+const jsForm = document.getElementById("jsForm");
 
 const options = {
   outline: {
@@ -55,73 +58,6 @@ const options = {
   },
 };
 
-const data = [
-  {
-    DocEntry: "10012",
-    IF_DocDate: "2020-01-24",
-    IF_Name: "HSE_IF_014",
-    Error_CD: "S / 저장되었습니다.",
-    Error_Result: "",
-    Error_Param: "",
-  },
-  {
-    DocEntry: "10013",
-    IF_DocDate: "2020-01-24",
-    IF_Name: "HSE_IF_014",
-    Error_CD: "S / 저장되었습니다.",
-    Error_Result: "",
-    Error_Param: `[{"U_GWDOCNO":"","U_GWDOCNUM":40083,"U_GWEMPNO":"20060014","U_GWEMPNM":"\uC774\uC740\uD654","U_GWLINK":"","U_GWSTS":"1","U_GWDATE":"9999-01-01T00:00:00","U_BPLID":"1","U_COMPCD":"HSE","RefDate":"9999-01-01T00:00:00","TaxDate":"9999-01-01T00:00:00","DueDate":"9999-01-01T00:00:00","Memo":"","Line_ID":0,"Account":"51004030","ShortName":"51004030","Debit":11500,"Credit":0,"TaxGroup":"","CostingCode":"EF146101","LineMemo":"\uC57C\uADFC\uC2DD\uB300","U_CARDNO":"5531-7600-0024-6971","U_CARDCODE":"","U_CARDNM":"","U_SAUPNO":"","U_SUPAMT":0,"U_VAT":0,"U_EMPNO":"20060014","U_GROUP1":"U100","U_GROUP2":"U110","U_BTDATE":"2020-10-30T00:00:00"}]`,
-  },
-  {
-    DocEntry: "10014",
-    IF_DocDate: "2020-01-24",
-    IF_Name: "HSE_IF_014",
-    Error_CD: "S / 저장되었습니다.",
-    Error_Result: "",
-    Error_Param: "",
-  },
-  {
-    DocEntry: "10014",
-    IF_DocDate: "2020-01-24",
-    IF_Name: "HSE_IF_014",
-    Error_CD: "S / 저장되었습니다.",
-    Error_Result: "",
-    Error_Param: "",
-  },
-  {
-    DocEntry: "10014",
-    IF_DocDate: "2020-01-24",
-    IF_Name: "HSE_IF_014",
-    Error_CD: "S / 저장되었습니다.",
-    Error_Result: "",
-    Error_Param: "",
-  },
-  {
-    DocEntry: "10014",
-    IF_DocDate: "2020-01-24",
-    IF_Name: "HSE_IF_014",
-    Error_CD: "S / 저장되었습니다.",
-    Error_Result: "",
-    Error_Param: "",
-  },
-  {
-    DocEntry: "10014",
-    IF_DocDate: "2020-01-24",
-    IF_Name: "HSE_IF_014",
-    Error_CD: "S / 저장되었습니다.",
-    Error_Result: "",
-    Error_Param: "",
-  },
-  {
-    DocEntry: "10014",
-    IF_DocDate: "2020-01-24",
-    IF_Name: "HSE_IF_014",
-    Error_CD: "S / 저장되었습니다.",
-    Error_Result: "",
-    Error_Param: "",
-  },
-];
-
 const grid = new Grid({
   el: document.getElementById("jsGrid"),
   bodyHeight: "fitToParent",
@@ -136,7 +72,7 @@ const grid = new Grid({
     },
     {
       header: "Date",
-      name: "IF_DocDate",
+      name: "createDate",
     },
     {
       header: "Name",
@@ -155,7 +91,7 @@ const grid = new Grid({
       name: "Error_Param",
     },
   ],
-  data,
+  data: [],
 });
 
 tui.Grid.applyTheme("clean", options);
@@ -185,4 +121,29 @@ const sortJson = (json) => {
   jsonSpan.append(document.createTextNode(JSON.stringify(json, null, 4)));
 };
 
+const getLog = async () => {
+  const {
+    toDate: { value: toDate },
+    fromDate: { value: fromDate },
+    api: { value: api },
+  } = jsForm;
+  try {
+    const response = await axios.get(`/log?todate=${toDate}&fromdate=${fromDate}&name=${api}`);
+    grid.resetData(response.data);
+  } catch (error) {
+    alert(error);
+  }
+};
+
+const onKeydown = (event) => {
+  const { keyCode } = event;
+  try {
+    if (keyCode != 13) {
+      return;
+    }
+    getLog();
+  } catch (error) {}
+};
+
 grid.on("click", onGridClick);
+document.addEventListener("keydown", onKeydown);
