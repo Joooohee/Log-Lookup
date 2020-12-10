@@ -11,18 +11,8 @@ const home = async (req, res) => {
   }
 };
 
-const getDateFormat = (date) => {
-  const year = date.substring(0, 4);
-  const month = date.substring(4, 6);
-  const day = date.substring(6);
-  console.log(year, month, day);
-  return `${year}-${month}-${day}`;
-};
-
 const getLog = async (req, res) => {
   const { todate, fromdate, name } = req.query;
-  // const startDate = getDateFormat(todate);
-  // const endDate = getDateFormat(fromdate);
   try {
     const pool = await webPoolPromise;
     const { recordset } = await pool

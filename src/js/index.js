@@ -137,12 +137,10 @@ const getLog = async () => {
 
 const onKeydown = (event) => {
   const { keyCode } = event;
-  try {
-    if (keyCode != 13) {
-      return;
-    }
-    getLog();
-  } catch (error) {}
+  if (keyCode != 13) {
+    return;
+  }
+  getLog();
 };
 
 grid.on("click", onGridClick);
