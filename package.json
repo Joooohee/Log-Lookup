@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node src/init.js --delay 2 --ignore src/static/ --ignore src/css/ --ignore src/js/",
-    "build": "gulp"
+    "build": "gulp",
+    "build:server": "babel src --out-dir build --ignore src/static/ --ignore src/css/ --ignore src/js/",
+    "build:static": "gulp build"
   },
   "repository": {
     "type": "git",
