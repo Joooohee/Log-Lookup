@@ -1,10 +1,13 @@
 import sql from "mssql";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const config = {
-  user: "sa",
-  password: "Effex12!@",
-  server: "121.78.152.148",
-  database: "FineGWApiDb",
+  user: process.env.USER,
+  password: process.env.PASSWORD,
+  server: process.env.SERVER,
+  database: process.env.DATABASE,
   options: {
     encrypt: false,
   },
