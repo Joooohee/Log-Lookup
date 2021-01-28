@@ -37,7 +37,9 @@
 
 ## About The Project
 
-![Product Name Screen Shot](./images/eximage.gif)
+![example](https://github.com/Joooohee/Log-Lookup/blob/main/images/exImage.GIF)
+<br>
+<br>
 To track errors, running queries every time is too cumbersome.<br>
 So I developed this project :smile:
 
